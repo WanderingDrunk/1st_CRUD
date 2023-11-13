@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include("../partials/head")%>
+    <title>Home page</title>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include("../partials/nav_bar") %>
+    <main>
+      <div class="workshop-name">
+        <h1>Procrastination Workshop</h1>
+      </div>
+      
+      <div class="blockquote-wrapper">
+        <div class="blockquote">
+          <h2>
+            Procrastination taught me how to do 30 minutes of work in 8 hours and 8 hours of work in 30 minutes
+           </h2>
+          <h4>&mdash;Soft Grung</h4>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
