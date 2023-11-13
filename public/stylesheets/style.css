@@ -110,3 +110,16 @@ main{
 	padding-right: 24px;
 	padding-left: 24px;
 }
+
+.wrapper{
+  width: 100%;
+  height: 100%;
+  background-image: url(/images/bbq.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+label{
+  color: #FFFFFF;
+}

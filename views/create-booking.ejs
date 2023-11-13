@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head")%>
+    <title>Create Booking page</title>
+  </head>
+  <body class = 'wrapper'>
+    <%- include("../partials/nav_bar") %>
+    <main><!-- action shows what url we will go to-->
+            <form method="post" action="/view-booking">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+                <br /> <br /> <br /> <br />
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter your email" name="email">
+                <br /> <br /> <br /> <br />
+                <label for="contact_num">Contact Number</label>
+                <input type="number" name="contact_num">
+                <br /> <br /> <br /> <br />
+                <label for="ws_date">Day of Workshop</label><!-- make this a calendar thingy-->
+                <input type="text" name="ws_date">
+                <br /> <br /> <br /> <br />
+                <label for="ws_time">Workshop Time</label>
+                <select name="ws_times">
+                    <option value="ws_times">12:00</option>
+                    <option value="ws_times">15:00</option>
+                    <option value="ws_times">18:00</option>
+                </select>
+                <br /> <br /> <br /> <br />
+                <label for="cred_card_name">Credit Card Name</label>
+                <input type="text" name="cred_card_name">
+                <br /> <br /> <br /> <br />
+                <label for="cred_card_num">Credit Card Number</label>
+                <input type="text" name="cred_card_num">
+                <br /> <br /> <br /> <br />
+                <label for="cvv">cvv</label>
+                <input type="text" name="cvv">
+                <br /> <br /> <br /> <br />
+                <label for="exp_month">Expiray Month</label>
+                <input type="text" name="exp_month">
+                </select>
+                <span>    /   
+                <label for="exp_day">Expiray Date</label>   
+                <input type="text" name="exp_day">
+                </select></span>
+                <br /> <br /> <br /> <br />
+
+                <input type="submit">Submit</input>
+
+            </form>
+        </main>
+    </body>
+</html>
