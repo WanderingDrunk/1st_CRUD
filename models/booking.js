@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var bookingSchema = new Schema({
+let bookingSchema = new Schema({
     name: {
       type: String,
       required: true,
@@ -9,15 +9,15 @@ var bookingSchema = new Schema({
     },
     email: {
       type: String,
-      required: true
+      required: false,
     },
     contact_num: {
       type: String,
-      required: true
+      required: false,
     },
     ws_date: {
-      type: Date,
-      required: true
+      type: String,
+      required: true,
     },
     ws_time: {
       type: String,
@@ -27,23 +27,23 @@ var bookingSchema = new Schema({
     },
     cred_card_name: {
       type: String,
-      required: true
+      required: false,
     },
     cred_card_num: {
       type: String,
-      required: true
+      required: false,
     },
     cvv: {
       type: String,
-      required: true
+      required: false,
     },
     exp_month: {
       type: String,
-      required: true
+      required: false,
     },
     exp_day: {
       type: String,
-      required: true
+      required: false,
     },
     date_booked: {
       type: Date,

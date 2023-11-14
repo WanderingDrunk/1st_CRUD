@@ -17,15 +17,15 @@
           </tr>
         </thead>
         <tbody>
-          <%- bookings.forEach(booking => { %>
+          <% bookings.forEach((booking) => { %>
             <tr>
-              <td><%- booking.name %></td>
-              <td><%- booking.ws_date %></td>
-              <td><%- booking.ws_time %></td>
-              <td><%- booking.date_booked %></td>
+              <td><%= booking.name %></td>
+              <td><%= booking.ws_date %></td>
+              <td><%= booking.ws_time %></td>
+              <td><%= booking.date_booked %></td>
             </tr>
             
-          <%- }); %>
+          <% }); %>
         </tbody>
       </table>
     </main>

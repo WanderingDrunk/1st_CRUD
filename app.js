@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser")
+const router = express.Router();
 
 var indexRouter = require('./routes/index');
 var createBookingsRouter = require('./routes/create-booking');
@@ -23,30 +24,12 @@ var app = express();
 // async function main() {
 //   await mongoose.connect(mongoDB);
 // }
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://arnas:Mongo@ssproject1.p6ab0sx.mongodb.net/";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+mongoose.connect('mongodb://127.0.0.1:27017/booking');
+const db = mongoose.connection;
+db.on('error', ()=>console.log("something went wrong connecting to db"));
+db.once('open',()=>{
+  console.log("DB connection successfull")
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -96,6 +79,8 @@ const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`Listening to localhost:${PORT}`)
-})
+});
+
+
 
 module.exports = app;
