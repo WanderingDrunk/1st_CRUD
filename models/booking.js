@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var bookingSchema = new Schema({
     name: {
       type: String,
       required: true,
@@ -53,4 +53,4 @@ var userSchema = new Schema({
   });
 
 
-  module.exports = mongoose.model('booking', userSchema);
+  module.exports = mongoose.model('booking', bookingSchema);
