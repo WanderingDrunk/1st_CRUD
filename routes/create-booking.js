@@ -29,6 +29,20 @@ router.post('/view-booking', (req, res, next)=>{
       res.redirect('/')
     }
   })
+
+  var bookingthing = new booking ({
+    name,
+    ws_date,
+    ws_time,
+    date_booked
+  });
+  bookingthing.save((err) =>{
+    if(err){
+      console.log("Something went wrong trying to save the data to the database")
+    }else{
+      console.log("Data Recorded succesfully")
+    }
+  })
 })
 
 module.exports = router;
