@@ -14,16 +14,22 @@ router.get('/', function(req, res, next) {
  
 });
 router.post('/', (req, res, next)=>{
-  const name = req.body.name;
-  const ws_date = req.body.ws_date;
-  const ws_time = req.body.ws_time;
-  const date_booked = req.body.date_booked;
+  
+
+  const {name, email, contact_num, ws_date, ws_time, cred_card_name, cred_card_num, cvv, exp_month, exp_day, date_booked} = req.body;
 
   var bookingmade = new booking({
-    name: name,
-    ws_date: ws_date,
-    ws_time: ws_time,
-    date_booked: date_booked
+    name,
+    email,
+    contact_num, 
+    ws_date, 
+    ws_time, 
+    cred_card_name, 
+    cred_card_num, 
+    cvv, 
+    exp_month, 
+    exp_day, 
+    date_booked
   });
 
   bookingmade.save();

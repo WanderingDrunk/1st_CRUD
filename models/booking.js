@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const date = new Date();
+
+
+
 let bookingSchema = new Schema({
     name: {
       type: String,
