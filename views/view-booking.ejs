@@ -3,6 +3,7 @@
   <head>
     <%- include("../partials/head")%>
     <title>View Bookings page</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   </head>
   <body class = 'wrapper'>
     <%- include("../partials/nav_bar") %>
@@ -15,6 +16,8 @@
             <th>WorkShop Date</th>
             <th>WorkShop Time</th>
             <th>Date Booked</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +27,10 @@
               <td><%= booking.ws_date %></td>
               <td><%= booking.ws_time %></td>
               <td><%= booking.date_booked %></td>
+              <td><a href="/create-booking/<%= booking._id %>" class="edit-button" ><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 1v3m5-3v3m5-3v3M1 7h7m1.506 3.429 2.065 2.065M19 7h-2M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm6 13H6v-2l5.227-5.292a1.46 1.46 0 0 1 2.065 2.065L8 16Z"/>
+              </svg></a></td>
+              <td><a class="delete-button"><i class="fuck">asdf</i></a></td>
             </tr>
             
           <% }); %>
@@ -33,3 +40,4 @@
     </main>
   </body>
 </html>
+
