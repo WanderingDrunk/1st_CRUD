@@ -32,7 +32,17 @@ router.post('/', (req, res, next)=>{
     date_booked
   });
 
-  bookingmade.save();
+
+  bookingmade.save()
+  .then(() => {
+    // Redirect to the 'view-booking' page after successfully saving the booking
+    res.redirect('/view-booking');
+  })
+  .catch((err) => {
+    // Handle the error appropriately
+    console.error('Error saving booking:', err);
+    next(err); // Pass the error to the error-handling middleware
+  });
 
 })
 
