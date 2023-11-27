@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include("../partials/head")%>
+  <title>Edit Booking page</title>
+</head>
+<body class='wrapper'>
+  <%- include("../partials/nav_bar") %>
+  <main>
+    <form method="post" action="/view-booking/<%= booking._id %>/edit">
+      <label for="name">Name</label>
+      <input type="text" name="name" value="<%= booking.name %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="email">Email</label>
+      <input type="text" placeholder="Enter your email" name="email" value="<%= booking.email %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="contact_num">Contact Number</label>
+      <input type="text" name="contact_num" value="<%= booking.contact_num %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="ws_date">Day of Workshop</label>
+      <input type="text" name="ws_date" value="<%= booking.ws_date %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="ws_time">Workshop Time</label>
+      <select name="ws_times">
+        <option value="12:00" <%= booking.ws_time === '12:00' ? 'selected' : '' %>>12:00</option>
+        <option value="15:00" <%= booking.ws_time === '15:00' ? 'selected' : '' %>>15:00</option>
+        <option value="18:00" <%= booking.ws_time === '18:00' ? 'selected' : '' %>>18:00</option>
+      </select>
+      <br /> <br /> <br /> <br />
+
+      <label for="cred_card_name">Credit Card Name</label>
+      <input type="text" name="cred_card_name" value="<%= booking.cred_card_name %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="cred_card_num">Credit Card Number</label>
+      <input type="text" name="cred_card_num" value="<%= booking.cred_card_num %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="cvv">CVV</label>
+      <input type="text" name="cvv" value="<%= booking.cvv %>">
+      <br /> <br /> <br /> <br />
+
+      <label for="exp_month">Expiry Month</label>
+      <input type="text" name="exp_month" value="<%= booking.exp_month %>">
+      </select>
+      <span>    /   
+      <label for="exp_day">Expiry Date</label>   
+      <input type="text" name="exp_day" value="<%= booking.exp_day %>">
+      </span>
+      <br /> <br /> <br /> <br />
+
+      <input type="submit" value="Update">
+    </form>
+  </main>
+</body>
+</html>

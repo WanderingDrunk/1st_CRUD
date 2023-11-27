@@ -15,6 +15,8 @@
             <th>WorkShop Date</th>
             <th>WorkShop Time</th>
             <th>Date Booked</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +26,16 @@
               <td><%= booking.ws_date %></td>
               <td><%= booking.ws_time %></td>
               <td><%= booking.date_booked %></td>
+              <td>
+                <a href="/view-booking/<%= booking._id %>/edit"  src="../public/images/edit-icon.png">bruh</a>
+              </td>
+
+              <!-- Delete button -->  
+              <td>  
+                <form action="/view-booking/<%= booking._id %>/delete" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+              </td>
             </tr>
             
           <% }); %>
