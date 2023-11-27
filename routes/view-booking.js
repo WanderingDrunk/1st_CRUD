@@ -43,9 +43,10 @@ router.post('/', (req, res, next) => {
 });
 
 /* GET edit booking page. */
-/* POST update booking. */
-router.post('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', function(req, res, next) {
   const bookingId = req.params.id;
+
+  console.log('Edit route triggered with ID:', bookingId);
 
   // Fetch the existing booking data based on the ID
   booking.findById(bookingId)
@@ -56,44 +57,54 @@ router.post('/:id/edit', (req, res, next) => {
         return;
       }
 
-      // Update the existing booking with the new data
-      existingBooking.name = req.body.name;
-      existingBooking.email = req.body.email;
-      existingBooking.email = req.body.email;
-      existingBooking.contact_num = req.body.contact_num;
-      existingBooking.ws_date = req.body.ws_date;
-      existingBooking.ws_time = req.body.ws_time;
-      existingBooking.cred_card_num = req.body.cred_card_num;
-      existingBooking.cvv = req.body.cvv;   
-      existingBooking.exp_month = req.body.exp_month;
-      existingBooking.exp_day = req.body.exp_day;
-      existingBooking.date_booked = req.body.date_booked;
-
-
-
-      // Save the updated booking
-      existingBooking.save()
-        .then(() => {
-          // Delete the previous booking
-          booking.findByIdAndDelete(bookingId)
-            .then(() => {
-              // Redirect to the 'view-booking' page after successfully updating and deleting the booking
-              res.redirect('/view-booking');
-            })
-            .catch(err => {
-              console.error('Error deleting previous booking:', err);
-              next(err);
-            });
-        })
-        .catch(err => {
-          console.error('Error updating booking:', err);
-          next(err);
-        });
+      res.render('edit-booking', { booking: existingBooking });
     })
     .catch(err => {
-      console.error('Error fetching existing booking for update:', err);
+      console.error('Error fetching existing booking for edit:', err);
       next(err);
     });
 });
 
+/* POST update booking. */
+router.post('/:id/edit', async (req, res, next) => {
+  const bookingId = req.params.id;
+
+  try {
+    // Fetch the existing booking data based on the ID
+    const existingBooking = await booking.findById(bookingId);
+
+    if (!existingBooking) {
+      // If no booking is found with the provided ID, render a 404 page or handle it as needed
+      res.status(404).render('404'); // Assuming you have a '404' template
+      return;
+    }
+
+    // Save the updated booking data
+    existingBooking.name = req.body.name;
+    existingBooking.email = req.body.email;
+    existingBooking.contact_num = req.body.contact_num;
+    existingBooking.ws_date = req.body.ws_date;
+    existingBooking.ws_time = req.body.ws_time;
+    existingBooking.cred_card_num = req.body.cred_card_num;
+    existingBooking.cvv = req.body.cvv;
+    existingBooking.exp_month = req.body.exp_month;
+    existingBooking.exp_day = req.body.exp_day;
+    existingBooking.date_booked = req.body.date_booked;
+
+    // Save the updated booking
+    await existingBooking.save();
+
+    // Now, delete the previous booking
+    await booking.deleteOne({ _id: bookingId });
+
+    // Fetch all bookings again after the delete operation
+    const updatedBookings = await booking.find({});
+
+    // Render the 'view-booking' page with the updated bookings
+    res.render('view-booking', { bookings: updatedBookings });
+  } catch (err) {
+    console.error('Error updating or deleting booking:', err);
+    next(err);
+  }
+});
 module.exports = router;
