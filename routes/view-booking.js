@@ -65,6 +65,10 @@ router.get('/:id/edit', function(req, res, next) {
     });
 });
 
+
+// chatgpt problems gotta solve
+
+
 /* POST update booking. */
 router.post('/:id/edit', async (req, res, next) => {
   const bookingId = req.params.id;
