@@ -4,12 +4,12 @@
   var booking = require('../models/booking');
 
   /* GET create booking page. */
-  router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
     booking.find({}).then((docs) => {
-      console.log('Documents Found:');
-      console.log(docs);
-      res.render('view-booking', { bookings: docs });
-    });
+    console.log('Documents Found:');
+    console.log(docs);
+    res.render('view-booking', { bookings: docs });
+  });
   });
 
   /* POST create booking. */
@@ -44,23 +44,23 @@
 
 
   /* POST delete booking. */
-  router.post('/:id/delete', async (req, res, next) => {
-    const bookingId = req.params.id;
+router.post('/:id/delete', async (req, res, next) => {
+  const bookingId = req.params.id;
 
-    try {
-      // Delete the booking by ID
-      await booking.findByIdAndDelete(bookingId);
+  try {
+    // Delete the booking by ID
+    await booking.findByIdAndDelete(bookingId);
 
-      // Fetch all bookings again after the delete operation
-      const updatedBookings = await booking.find({});
+    // Fetch all bookings again after the delete operation
+    const updatedBookings = await booking.find({});
 
-      // Render the 'view-booking' page with the updated bookings
-      res.render('view-booking', { bookings: updatedBookings });
-    } catch (err) {
-      console.error('Error deleting booking:', err);
-      next(err);
-    }
-  });
+    // Render the 'view-booking' page with the updated bookings
+    res.render('view-booking', { bookings: updatedBookings });
+  } catch (err) {
+    console.error('Error deleting booking:', err);
+    next(err);
+  }
+});
 
   /* GET edit booking page. */
   router.get('/:id/edit', function(req, res, next) {
