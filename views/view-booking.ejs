@@ -27,13 +27,11 @@
               <td><%= booking.ws_time %></td>
               <td><%= booking.date_booked %></td>
               <td>
-                <a href="/view-booking/<%= booking._id %>/edit"  src="../public/images/edit-icon.png">bruh</a>
+                <a href="/view-booking/<%= booking._id %>/edit"><img src="/images/edit-icon.png" width="30" height="30"></a>
               </td>
-
-              <!-- Delete button -->  
               <td>  
                 <form action="/view-booking/<%= booking._id %>/delete" method="post">
-                    <button type="submit">Delete</button>
+                    <button type="submit"><img src="/images/bin.png" width="30" height="30"></button>
                 </form>
               </td>
             </tr>
