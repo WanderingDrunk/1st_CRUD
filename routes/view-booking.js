@@ -73,8 +73,7 @@
       .then(existingBooking => {
         if (!existingBooking) {
           // If no booking is found with the provided ID, render a 404 page or handle it as needed
-          res.status(404).render('404'); // Assuming you have a '404' template
-          return;
+          res.status(404).render('404'); 
         }
 
         res.render('edit-booking', { booking: existingBooking });
