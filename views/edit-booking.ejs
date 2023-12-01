@@ -13,11 +13,11 @@
       <br /> <br /> <br /> <br />
 
       <label for="email">Email</label>
-      <input type="text" placeholder="Enter your email" name="email" value="<%= booking.email %>">
+      <input type="email" placeholder="Enter your email" name="email" value="<%= booking.email %>">
       <br /> <br /> <br /> <br />
 
       <label for="contact_num">Contact Number</label>
-      <input type="text" name="contact_num" value="<%= booking.contact_num %>">
+      <input type="tel" name="contact_num" value="<%= booking.contact_num %>">
       <br /> <br /> <br /> <br />
 
       <label for="ws_date">Day of Workshop</label>
@@ -37,19 +37,19 @@
       <br /> <br /> <br /> <br />
 
       <label for="cred_card_num">Credit Card Number</label>
-      <input type="text" name="cred_card_num" value="<%= booking.cred_card_num %>">
+      <input type="number" name="cred_card_num" maxlength="16" minlength="16" value="<%= booking.cred_card_num %>">
       <br /> <br /> <br /> <br />
 
       <label for="cvv">CVV</label>
-      <input type="text" name="cvv" value="<%= booking.cvv %>">
+      <input type="number" name="cvv" max="999" min="001" maxlength="3" minlength="3" value="<%= booking.cvv %>">
       <br /> <br /> <br /> <br />
 
       <label for="exp_month">Expiry Month</label>
-      <input type="text" name="exp_month" value="<%= booking.exp_month %>">
+      <input type="number" name="exp_month" max="12" min="1" maxlength="2" minlength="1" value="<%= booking.exp_month %>">
       </select>
       <span>    /   
       <label for="exp_day">Expiry Date</label>   
-      <input type="text" name="exp_day" value="<%= booking.exp_day %>">
+      <input type="number" name="exp_day" max="31" min="1" maxlength="2" minlength="1" value="<%= booking.exp_day %>">
       </span>
       <br /> <br /> <br /> <br />
 
