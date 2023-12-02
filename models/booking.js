@@ -20,7 +20,7 @@ let bookingSchema = new Schema({
       required: false,
     },
     ws_date: {
-      type: String,
+      type: Date,
       required: true,
     },
     ws_time: {
@@ -34,19 +34,19 @@ let bookingSchema = new Schema({
       required: false,
     },
     cred_card_num: {
-      type: String,
+      type: Number,
       required: false,
     },
     cvv: {
-      type: String,
+      type: Number,
       required: false,
     },
     exp_month: {
-      type: String,
+      type: Number,
       required: false,
     },
     exp_day: {
-      type: String,
+      type: Number,
       required: false,
     },
     date_booked: {

@@ -4,50 +4,58 @@
     <%- include("../partials/head")%>
     <title>Create Booking page</title>
   </head>
-  <body class = 'wrapper'>
+  <body class = 'wrapper' onload="CurrentDate()">
     <%- include("../partials/nav_bar") %>
     <main><!-- action shows what url we will go to-->
             <form method="post" action="/view-booking">
-                <label for="name">Name</label>
-                <input type="text" name="name">
+              <p class="required">* Required</p>
+                <label for="name">Name<sup class="required">*</sup></label>
+                <input type="text" name="name" required>
                 <br /> <br /> <br /> <br />
-                <label for="email">Email</label>
-                <input type="text" placeholder="Enter your email" name="email">
+
+                <label for="email">Email<sup class="required">*</sup></label>
+                <input type="email" placeholder="Enter your email" name="email" required>
                 <br /> <br /> <br /> <br />
-                <label for="contact_num">Contact Number</label>
-                <input type="text" name="contact_num">
+
+                <label for="contact_num">Contact Number<sup class="required">*</sup></label>
+                <input type="text" name="contact_num" required>
                 <br /> <br /> <br /> <br />
-                <label for="ws_date">Day of Workshop</label><!-- make this a calendar thingy-->
-                <input type="text" name="ws_date">
+
+                <label for="ws_date">Day of Workshop<sup class="required">*</sup></label>
+                <input type="date" name="ws_date" id="bookingDate" required>
                 <br /> <br /> <br /> <br />
-                <label for="ws_time">Workshop Time</label>
+
+                <label for="ws_time">Workshop Time<sup class="required">*</sup></label>
                 <select name="ws_times">
                     <option value="ws_times">12:00</option>
                     <option value="ws_times">15:00</option>
                     <option value="ws_times">18:00</option>
                 </select>
                 <br /> <br /> <br /> <br />
-                <label for="cred_card_name">Credit Card Name</label>
-                <input type="text" name="cred_card_name">
+
+                <label for="cred_card_name">Credit Card Name<sup class="required">*</sup></label>
+                <input type="text" name="cred_card_name" required>
                 <br /> <br /> <br /> <br />
-                <label for="cred_card_num">Credit Card Number</label>
-                <input type="text" name="cred_card_num">
+
+                <label for="cred_card_num">Credit Card Number<sup class="required">*</sup></label>
+                <input type="number" name="cred_card_num" maxlength="16" minlength="16" required>
                 <br /> <br /> <br /> <br />
-                <label for="cvv">cvv</label>
-                <input type="text" name="cvv">
+                
+                <label for="cvv">cvv<sup class="required">*</sup></label>
+                <input type="number" name="cvv" max="999" min="001" maxlength="3" minlength="3" required>
                 <br /> <br /> <br /> <br />
-                <label for="exp_month">Expiray Month</label>
-                <input type="text" name="exp_month">
+                <label for="exp_month">Expiray Month<sup class="required">*</sup></label>
+                <input type="number" name="exp_month" max="12" min="1" maxlength="2" minlength="1" required>
                 </select>
-                <span>    /   
-                <label for="exp_day">Expiray Date</label>   
-                <input type="text" name="exp_day">
+                <span>       
+                <label for="exp_day">Expiray Date<sup class="required">*</sup></label>     
+                <input type="number" name="exp_day" max="31" min="1" maxlength="2" minlength="1" required>
                 </select></span>
-                <br /> <br /> <br /> <br />
+                <br/> <br/>
 
-                <input type="submit" value="submit"></input>
-
+                <input type="submit" value="submit" onclick="location.href='/view-booking'"></input>
             </form>
         </main>
+        <script src="/javascripts/date.js"></script>
     </body>
 </html>

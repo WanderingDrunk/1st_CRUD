@@ -7,24 +7,25 @@
 <body class='wrapper'>
   <%- include("../partials/nav_bar") %>
   <main>
-    <form method="post" action="/view-booking">
-      <label for="name">Name</label>
-      <input type="text" name="name" value="<%= booking.name %>">
+    <form method="post" action="/view-booking/<%= booking._id %>/edit">
+      <p class="required">* Required</p>
+      <label for="name">Name<sup class="required">*</sup></label>
+      <input type="text" name="name" value="<%= booking.name %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="email">Email</label>
-      <input type="text" placeholder="Enter your email" name="email" value="<%= booking.email %>">
+      <label for="email">Email<sup class="required">*</sup></label>
+      <input type="email" placeholder="Enter your email" name="email" value="<%= booking.email %> " required>
       <br /> <br /> <br /> <br />
 
-      <label for="contact_num">Contact Number</label>
-      <input type="text" name="contact_num" value="<%= booking.contact_num %>">
+      <label for="contact_num">Contact Number<sup class="required">*</sup></label>
+      <input type="tel" name="contact_num" value="<%= booking.contact_num %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="ws_date">Day of Workshop</label>
-      <input type="text" name="ws_date" value="<%= booking.ws_date %>">
+      <label for="ws_date">Day of Workshop<sup class="required">*</sup></label>
+      <input type="text" name="ws_date" value="<%= booking.ws_date %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="ws_time">Workshop Time</label>
+      <label for="ws_time">Workshop Time<sup class="required">*</sup></label>
       <select name="ws_times">
         <option value="12:00" <%= booking.ws_time === '12:00' ? 'selected' : '' %>>12:00</option>
         <option value="15:00" <%= booking.ws_time === '15:00' ? 'selected' : '' %>>15:00</option>
@@ -32,24 +33,24 @@
       </select>
       <br /> <br /> <br /> <br />
 
-      <label for="cred_card_name">Credit Card Name</label>
-      <input type="text" name="cred_card_name" value="<%= booking.cred_card_name %>">
+      <label for="cred_card_name">Credit Card Name<sup class="required">*</sup></label>
+      <input type="text" name="cred_card_name" value="<%= booking.cred_card_name %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="cred_card_num">Credit Card Number</label>
-      <input type="text" name="cred_card_num" value="<%= booking.cred_card_num %>">
+      <label for="cred_card_num">Credit Card Number<sup class="required">*</sup></label>
+      <input type="number" name="cred_card_num" maxlength="16" minlength="16" value="<%= booking.cred_card_num %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="cvv">CVV</label>
-      <input type="text" name="cvv" value="<%= booking.cvv %>">
+      <label for="cvv">CVV<sup class="required">*</sup></label>
+      <input type="number" name="cvv" max="999" min="001" maxlength="3" minlength="3" value="<%= booking.cvv %>" required>
       <br /> <br /> <br /> <br />
 
-      <label for="exp_month">Expiry Month</label>
-      <input type="text" name="exp_month" value="<%= booking.exp_month %>">
+      <label for="exp_month">Expiry Month<sup class="required">*</sup></label>
+      <input type="number" name="exp_month" max="12" min="1" maxlength="2" minlength="1" value="<%= booking.exp_month %>" required>
       </select>
       <span>    /   
-      <label for="exp_day">Expiry Date</label>   
-      <input type="text" name="exp_day" value="<%= booking.exp_day %>">
+      <label for="exp_day">Expiry Date<sup class="required">*</sup></label>   
+      <input type="number" name="exp_day" max="31" min="1" maxlength="2" minlength="1" value="<%= booking.exp_day %>" required>
       </span>
       <br /> <br /> <br /> <br />
 
