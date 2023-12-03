@@ -118,8 +118,6 @@ main{
 	}
 
 .wrapper{
-
-  
   background-position: center;
   background-size: auto;
   background-repeat: no-repeat;
@@ -135,7 +133,7 @@ body {
 	font-family: sans-serif;
 	font-weight: 100;
 	color: white;
-	font-size: 14px;
+	font-size: 20px;
 }
 
 .container {
@@ -248,5 +246,15 @@ tbody {
   ::placeholder{
 	color: white;
   }
+
+  .footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color:#49a09d;
+	color: white;
+	text-align: center;
+ }
 
  
