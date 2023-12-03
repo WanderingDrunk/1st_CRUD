@@ -39,17 +39,11 @@
   // parse application/json
   app.use(bodyParser.json())
 
-  app.use('/home', indexRouter);
-  app.use('/create-booking', createBookingsRouter);
-  app.use('/view-booking', viewBookingsRouter);
-  app.use('/about', aboutRouter);
-  app.use('/help', helpRouter);
-
-  // parse application/x-www-form-urlencoded
-  app.use(bodyParser.urlencoded({ extended: false }))
-
-  // parse application/json
-  app.use(bodyParser.json())
+app.use('/home', indexRouter);
+app.use('/create-booking', createBookingsRouter);
+app.use('/view-booking', viewBookingsRouter);
+app.use('/about', aboutRouter);
+app.use('/help', helpRouter);
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
