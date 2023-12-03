@@ -7,39 +7,102 @@
   <body class = 'wrapper'>
     <%- include("../partials/nav_bar") %>
     <main>
+      <div class="search-container">
+        <form id="searchForm">
+          <label for="searchName"></label>
+          <input type="text" id="searchName" name="searchName" placeholder="Enter name">
+          <button type="submit">Search</button>
+        </form>
+      </div>
       <div class="container">
-      <table>
-        <thead> 
-          <tr>
-            <th>Name</th>
-            <th>Work Shop Date</th>
-            <th>Work Shop Time</th>
-            <th>Date Booked</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% bookings.forEach((booking) => { %>
+        <table>
+          <thead> 
             <tr>
-              <td><%= booking.name %></td>
-              <td><%= booking.ws_date.toDateString().split(" ")[1]+" "+booking.ws_date.toDateString().split(" ")[2]+" "+booking.ws_date.toDateString().split(" ")[3] %></td>
-              <td><%= booking.ws_time %></td>
-              <td><%= booking.date_booked.toDateString().split(" ")[1]+" "+booking.date_booked.toDateString().split(" ")[2]+" "+booking.date_booked.toDateString().split(" ")[3] %></td>
-              <td>
-                <a href="/view-booking/<%= booking._id %>/edit"><img src="/images/edit-icon.png" width="30" height="30"></a>
-              </td>
-              <td>  
-                <form action="/view-booking/<%= booking._id %>/delete" method="post">
-                    <button class="b1" type="submit"><img src="/images/bin.png" width="30" height="30"></button>
-                </form>
-              </td>
+              <th>Name</th>
+              <th>Work Shop Date</th>
+              <th>Work Shop Time</th>
+              <th>Date Booked</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
-            
-          <% }); %>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <% bookings.forEach((booking) => { %>
+              <tr>
+                <td><%= booking.name %></td>
+                <td>
+                  <% if (booking.ws_date instanceof Date) { %>
+                    <%= booking.ws_date.toDateString().split(" ")[1] + " " + booking.ws_date.toDateString().split(" ")[2] + " " + booking.ws_date.toDateString().split(" ")[3] %>
+                  <% } else if (booking.ws_date) { %>
+                    <%= booking.ws_date %>
+                  <% } else { %>
+                    N/A <!-- or handle it in a way that makes sense for your application -->
+                  <% } %>
+                </td>
+                
+                
+                <td><%= booking.ws_time %></td>
+                <td><%= booking.date_booked.toDateString().split(" ")[1]+" "+booking.date_booked.toDateString().split(" ")[2]+" "+booking.date_booked.toDateString().split(" ")[3] %></td>
+                <td>
+                  <a href="/view-booking/<%= booking._id %>/edit"><img src="/images/edit-icon.png" width="30" height="30"></a>
+                </td>
+                <td>  
+                  <form action="/view-booking/<%= booking._id %>/delete" method="post">
+                      <button class="b1" type="submit"><img src="/images/bin.png" width="30" height="30"></button>
+                  </form>
+                </td>
+              </tr>
+              
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
     </main>
+
+    <script>
+      // Helper function to format date or return 'N/A' if not a Date object
+      function formatDate(date) {
+        if (date instanceof Date) {
+          return date.toDateString().split(" ")[1] + " " + date.toDateString().split(" ")[2] + " " + date.toDateString().split(" ")[3];
+        } else {
+          return 'N/A';
+        }
+      }
+    
+      document.getElementById('searchForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const searchName = document.getElementById('searchName').value;
+    
+        // Make an AJAX request to the server to get filtered results
+        fetch(`/view-booking/search?name=${encodeURIComponent(searchName)}`)
+          .then(response => response.json())
+          .then(data => {
+            // Update the table with the filtered results
+            const tableBody = document.querySelector('tbody');
+            tableBody.innerHTML = '';
+    
+            data.bookings.forEach(booking => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${booking.name}</td>
+                <td>${booking.ws_date}</td>
+                <td>${booking.ws_time}</td>
+                <td>${booking.date_booked}</td>
+                <td>
+                  <a href="/view-booking/${booking._id}/edit"><img src="/images/edit-icon.png" width="30" height="30"></a>
+                </td>
+                <td>
+                  <form action="/view-booking/${booking._id}/delete" method="post">
+                    <button class="b1" type="submit"><img src="/images/bin.png" width="30" height="30"></button>
+                  </form>
+                </td>
+              `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch(error => console.error('Error fetching filtered bookings:', error));
+      });
+    </script>
+    
   </body>
 </html>

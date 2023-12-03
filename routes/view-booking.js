@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
       name,
       email,
       contact_num,
-      ws_date,
+      ws_date: new Date(ws_date),
       ws_time,
       cred_card_name,
       cred_card_num,
@@ -123,7 +123,22 @@ router.post('/:id/edit', async (req, res, next) => {
   }
 });
 
-    
+router.get('/search', async (req, res, next) => {
+  const searchName = req.query.name;
 
+  try {
+    // Use a regular expression to perform a case-insensitive search by name
+    const filteredBookings = await booking.find({ name: { $regex: new RegExp(searchName, 'i') } });
+
+    // Log the ws_date types
+    console.log(filteredBookings.map(booking => typeof booking.ws_date));
+
+    // Send the filtered bookings as JSON response
+    res.status(200).json({ bookings: filteredBookings });
+  } catch (err) {
+    console.error('Error searching bookings:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
   module.exports = router;

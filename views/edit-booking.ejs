@@ -14,7 +14,7 @@
       <br /> <br /> <br /> <br />
 
       <label for="email">Email<sup class="required">*</sup></label>
-      <input type="email" placeholder="Enter your email" name="email" value="<%= booking.email %> " required>
+      <input type="email" name="email" value="<%= booking.email %> " required>
       <br /> <br /> <br /> <br />
 
       <label for="contact_num">Contact Number<sup class="required">*</sup></label>
@@ -22,7 +22,7 @@
       <br /> <br /> <br /> <br />
 
       <label for="ws_date">Day of Workshop<sup class="required">*</sup></label>
-      <input type="text" name="ws_date" value="<%= booking.ws_date %>" required>
+      <input type="date" name="ws_date" id="bookingDate" value="<%= booking.ws_date %>" required>
       <br /> <br /> <br /> <br />
 
       <label for="ws_time">Workshop Time<sup class="required">*</sup></label>
